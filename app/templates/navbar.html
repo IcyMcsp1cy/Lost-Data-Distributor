@@ -1,0 +1,41 @@
+{% from "macros.html" import for_nav_link, for_drop_link with context %}
+
+<nav class="navbar navbar-expand-sm navbar-light bg-dark text-light",
+     style="border-width: 20px; box-sizing: border-box">
+    <h2 class="font-weight-medium" id="menu-toggle">
+        EXPRES
+    </h2>
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto mt-2 mt-md-0">
+            
+            {{ for_nav_link(g.nav|default([
+                ['/', 'Home'],
+                ['/data', 'Data'],
+                ['/news', 'News'],
+                ['/glossary', 'Glossary'],
+                ['/login', 'Sign In'],
+                ], true)) }}
+
+            {% if g.drop != None %}
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button"
+                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    {{ g.user['fname']|default('User', false) }}
+                </a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                    {{ for_drop_link(g.drop) }}
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="/logout">Logout</a>
+                </div>
+            </li>
+            {% endif %}
+        </ul>
+    </div>
+</nav>
+<div class='w-100 bg-{{ g.color }}' style="height: 10px" ></div>

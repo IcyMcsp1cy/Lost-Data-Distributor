@@ -1,0 +1,50 @@
+{% extends 'base_page.html' %}
+
+{% set title = "Registration" %}
+
+{% block content %}
+<div class="myform form col-md-5 mx-auto">
+    <div class="logo mb-3">
+        <div class="col-md-12 text-center">
+           <h1>Request Access Form</h1>
+        </div>
+   </div>
+    <form action="/register" method="post" onsubmit="submit()">
+        {% for msg in get_flashed_messages() %}
+        <div class="alert alert-warning" role="alert">
+            {{msg}}
+        </div>
+        {% endfor %}
+        {{ form.csrf_token }}
+        <div class="form-group">
+            {{ form.firstName.label }}
+            <input id="firstName" class="form-control" name="firstName" required="" size="32" type="firstName" value="" placeholder="John">
+        </div>
+
+        <div class="form-group">
+            {{ form.lastName.label }}
+            <input id="lastName" class="form-control" name="lastName" required="" size="32" type="lastName" value="" placeholder="Doe">
+        </div>
+
+        <div class="form-group">
+            {{ form.email.label }}
+            <input id="email" class="form-control" name="email" required="" size="32" type="email" value="" placeholder="ex@mple.com">
+        </div>
+
+        <div class="form-group">
+            {{ form.institution.label }}
+            <input id="institution" class="form-control" name="institution" required="" size="32" type="institution" value="" placeholder="NAU">
+        </div>
+
+        <div class="col-md-12 text-center ">
+            <button type="submit" name="submit" class="btn btn-block mybtn btn-primary tx-tfm">Sign Up</button>
+            <br>
+        </div>
+
+        <div class="form-group">
+            <p class="text-center">Already have an account? <a href="/login" id="signup">Sign in here</a></p>
+        </div>
+    </form>
+</div>
+{% endblock %}
+    

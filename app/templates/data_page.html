@@ -1,0 +1,20 @@
+{% extends 'base_page.html' %}
+
+{% set title = "Graphing" %}
+
+
+{% block content %}
+<div class="h-100 container-fluid px-0">
+    {% raw %}{%app_entry%}{% endraw %}
+</div>
+
+    
+{% endblock content %}
+
+{% block dashScripts %}
+    {% raw %}
+    {%config%}
+    {%scripts%}
+    {%renderer%}
+    {% endraw %}
+{% endblock %}

@@ -1,0 +1,51 @@
+
+{% extends 'base_page.html' %}
+
+{% set title = "Account" %}
+
+{% block content %}
+<div class="myform form col-md-5 mx-auto">
+    <div class="logo mb-3">
+        <div class="col-md-12 text-center">
+            <h1>Account</h1>
+        </div>
+    </div>
+    {% for msg in get_flashed_messages() %}
+        <div class="alert alert-warning" role="alert">
+            {{msg}}
+        </div>
+    {% endfor %}
+    <h2>Change email address:</h2>
+    <form action="" method="post" novalidate>
+        {{ form1.csrf_token }}
+        <div class="form-group">
+            {{ form1.old.label }}
+            <input id="old" class="form-control" name="old" required="" size="32" type="email" value="" placeholder="ex@mp1e.com">
+        </div>
+
+        <div class="form-group">
+            {{ form1.e_new.label }}
+            <input id="new" class="form-control" name="e_new" required="" size="32" type="email" value="" placeholder="ex@m2le.com">
+        </div>
+
+        <div class="col-md-12 text-center ">
+            <button type="submit" name="submit" class="btn mybtn btn-primary tx-tfm">Change Email</button>
+            <br>
+        </div>
+    </form>
+    <h2>Change institution:</h2>
+    <form action="" method="post" novalidate>
+        {{ form2.csrf_token }}
+        <div class="form-group">
+            {{ form2.i_new.label }}
+            <input id="new" class="form-control" name="i_new" required="" size="32" type="email" value="" placeholder="ex@mpl3.com">
+        </div>
+  
+        <div class="col-md-12 text-center ">
+            <button type="submit" name="submit" class="btn mybtn btn-primary tx-tfm">Change Institution</button>
+            <br>
+        </div>
+    </form>
+</div>
+
+{% endblock %}

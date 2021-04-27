@@ -1,0 +1,45 @@
+{% extends 'base_page.html' %}
+
+{% set title = post.title %}
+
+{% block content %}
+
+
+<div class="jumbotron jumbotron-fluid m-0 pb-0 pt-auto rounded">
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <div class="container-fluid p-0 pb-2 text-white">
+        <h1 class="display-3 mx-3"><strong>{{post.title}}</strong></h1>
+        <p class="lead mx-3 mb-0"><strong>{{post.subtitle}}</strong></p>
+    </div>
+</div>
+<style>
+    .jumbotron {
+        {% if post.image is defined %}
+            background-image: url("{{ url_for('static', filename='images/'+post.image) }}");
+        {% else %}
+            background-image: url("{{ url_for('static', filename='images/post-bg.jpg') }}");
+        {% endif %}
+    }
+</style> 
+<div class="row">
+    <div class="col-md-10 col-lg-8 mx-auto">
+
+        <div class="card border-0 w-100 mx-md-auto" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title">By {{post.author}}</h5>
+                <h6 class="card-subtitle mb-2 text-muted">Submitted {{post.datetime}}</h6>
+                <div class='p-content'>
+                    <p class="card-text">{{post.content}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

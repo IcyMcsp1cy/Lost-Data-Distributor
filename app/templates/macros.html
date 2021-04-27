@@ -1,0 +1,44 @@
+{% macro nav_link(endpoint, text) %}
+
+    {% if current is defined and current == text %}
+    <li class="nav-item active">
+        <a class="nav-link text-light" href="{{ endpoint }}">{{text}}<span class="sr-only">(current)</span></a>
+    </li>
+    {% else %}
+    <li class="nav-item">
+        <a class="nav-link text-light" href="{{ endpoint }}">{{text}}</a>
+    </li>
+    {% endif %}
+    
+{% endmacro %}
+
+{% macro for_nav_link(arg_list) %}
+
+    {% for pair in arg_list %}
+        {% if current is defined and current == pair[1] %}
+        <li class="nav-item">
+            <a class="nav-link current text-primary" href="{{ pair[0] }}">{{pair[1]}}</a>
+        </li>
+        {% else %}
+        <li class="nav-item">
+            <a class="nav-link text-light" href="{{ pair[0] }}">{{pair[1]}}</a>
+        </li>
+        {% endif %}
+    {% endfor %}
+{% endmacro %}
+
+{% macro for_drop_link(arg_list) %}
+    {% for pair in arg_list %}
+    <a class="dropdown-item" href="{{ pair[0] }}">{{ pair[1] }}</a>
+    {% endfor %}
+{% endmacro %}
+
+{% macro side_link(endpoint, text) %}
+
+    {% if current is defined and current == text %}
+    <a href="{{ endpoint }}" class="list-group-item list-group-item-action bg-dark text-light active">{{text}}</a>
+    {% else %}
+    <a href="{{ endpoint }}" class="list-group-item list-group-item-action bg-dark text-light">{{text}}</a>
+    {% endif %}
+    
+{% endmacro %}

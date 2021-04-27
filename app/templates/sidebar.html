@@ -1,0 +1,57 @@
+{% extends 'base_page.html' %}
+{% from "macros.html" import side_link with context %}
+
+
+
+{% set title_link = "#" %}
+
+{% block stylesheets %}
+{{ super() }}
+<link rel="stylesheet" href="{{ url_for("static", filename="sidebar.css" ) }}">
+{% endblock %}
+
+{% block body %}
+<div class="d-flex h-100" id="wrapper">
+    <!-- Sidebar -->
+    <div class="bg-dark border-right-dark sticky-top" id="sidebar-wrapper">
+        <div class="list-group list-group-flush">
+            {{ side_link("/admin/news", "Edit News") }}
+            {{ side_link("/admin", "File Management") }}
+            {{ side_link("/admin/glossary", "Edit Glossary") }}
+            {{ side_link("/deleteNews", "Delete news posts") }}
+            {{ side_link("/deleteGlossary", "Delete from Glossary") }}
+            {{ side_link("/setNewsHomePage", "Set article to Home Page") }}
+
+
+        </div>
+    </div>
+
+    <script>
+        $("#menu-toggle").click(function(e) {
+            e.preventDefault();
+            $("#wrapper").toggleClass("toggled");
+        });
+    </script>
+    <!-- /#sidebar-wrapper -->
+
+    <!-- Page Content -->
+    <div class="overflow-auto h-100" id="page-content-wrapper">
+
+        {% include 'navbar.html' %}
+        <br>
+        <main role="main" class="container">
+            {% block content %}
+            <h1>Admin Page</h1>
+
+            {% endblock content %}
+        </main>
+    </div>
+</div>
+
+<script>
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+</script>
+{% endblock body %}

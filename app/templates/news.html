@@ -1,0 +1,46 @@
+{% extends 'base_page.html' %}
+
+{% set title = "News" %}
+
+{% block content %}
+
+<div class="jumbotron jumbotron-fluid m-0 pb-0 pt-auto rounded">
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <div class="container-fluid p-0 pb-2 text-white text-center">
+        <h1 class="display-3 mx-3"><strong>Articles</strong></h1>
+    </div>
+</div>
+<style>
+    .jumbotron {
+        background-image: url("{{ url_for('static', filename='images/post-bg.jpg') }}");
+    }
+</style> 
+<div class="">
+    <ul class="list-group list-group-flush">
+        {% for post in posts %}
+    
+          <li class="list-group-item px-0">
+              <div class="col-md-10 col-lg-8 mx-auto">
+                  <a href=" {{url_for('post', post_id = post._id) }} ">
+                      <h2 class="p-title mt-2">
+                          {{post.title}}
+                      </h2>
+                  </a>    
+                  <h3 class="">
+                      {{post.subtitle}}
+                  </h3>
+                  <p class="m-0">Posted by {{post.author}} on {{post.datetime}}</p>
+              </div>
+          </li>
+    
+        {% endfor %}
+        </ul>
+</div>
+  
+{% endblock %}

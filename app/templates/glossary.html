@@ -1,0 +1,19 @@
+{% extends 'base_page.html' %}
+
+{% set title = "Glossary" %}
+
+{% block content %}
+    <h1 class="mx-3">Glossary</h1>
+
+    <ul class="list-group list-group-flush">
+    {% for term in glos %}
+
+      <li class="list-group-item">
+        <b>{{term.entry}}</b>
+        <p>{{term.definition}}</p>
+      </li>
+
+    {% endfor %}
+    </ul>
+
+{% endblock %}

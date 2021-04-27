@@ -1,0 +1,24 @@
+#Definitely needed
+bcrypt
+dash
+dash-bootstrap-components
+dash-core-components
+dash_daq
+dash-html-components
+dash-table
+dash_extensions
+dnspython
+email-validator
+flask
+flask-login
+flask-mail
+flask-pymongo
+flask-SQLAlchemy
+flask-wtf
+julian
+pandas
+plotly
+pymongo
+WTForms
+#Possibly needed
+numpy

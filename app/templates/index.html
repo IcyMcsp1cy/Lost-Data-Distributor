@@ -1,0 +1,88 @@
+{% extends 'base_page.html' %}
+
+{% set title = "Lowell Observatory" %}
+
+
+
+{% block content %}
+
+<div class="d-flex flex-wrap-reverse">
+    <div class="col-lg-6">
+        <div class="card m-0 mb-5">
+            <div class="card-header bg-white px-0 pt-0">
+                <div class="jumbotron jumbotron-fluid m-0 pb-0 pt-auto rounded">
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <div class="container-fluid p-0 py-2 text-white">
+                        <h1 class="display-4 mx-3"><strong>{{post.title}}</strong></h1>
+                        <p class="lead mx-3 mb-0"><strong>{{post.subtitle}}</strong></p>
+
+                    </div>
+                </div>
+                <style>
+                    .jumbotron {
+                        {% if post.image is defined %}
+                            background-image: url("{{ url_for('static', filename='images/'+post.image) }}");
+                        {% else %}
+                            background-image: url("{{ url_for('static', filename='images/post-bg.jpg') }}");
+                        {% endif %}
+                    }
+                </style> 
+                <p class="lead mx-3 mb-0 pt-2">By {{post.author}}</p>
+            </div>
+            <div class="card-body">
+                
+                <div class='p-content'>
+                    <p class="card-text">
+                        {% if len(post.content) > 300 %}
+                        {{post.content[0:300]+'...'}}
+                        {% else %}
+                        {{post.content}}
+                        {% endif %}
+                    </p>
+                </div>
+                <a class="btn btn-outline-secondary" href="/post/{{post._id}}" role="button">Read More</a>
+            </div>
+            <div class="card-footer bg-white px-0">
+                <p class="lead mx-3 mb-0">Posted {{post.datetime}}</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-6">
+        <div class="card mb-5">
+            <div class="card-body pb-1">
+                <div id="graph"></div>
+                
+            </div>
+            <div class="card-footer bg-white">
+                <h5 class="card-title">Lowell Observatory Solar Telescope</h5>
+                <div class='p-content'>
+                    <p class="card-text">Lowell Observatory has partnered with Yale University to build the
+                        EXtreme PREcision Spectrograph (EXPRES) which is capable of achieving the precision necessary to detect an
+                        Earth twin. EXPRES has been fully commissioned on the 4.3-meter Lowell Discovery
+                        Telescope (LDT) and is ushering a new era of extreme radial velocity precision.</p>
+                </div>
+                <a href="/data/" class="btn btn-primary mt-3">View Records</a>
+            </div>
+        </div>
+    </div>
+  </div>
+
+
+{% endblock %}
+
+{% block scripts %}
+{{ super() }}
+<script type="text/javascript">
+    var graphs = {{plot | safe}};
+
+    Plotly.plot('graph',graphs,{});
+</script>
+{% endblock %}

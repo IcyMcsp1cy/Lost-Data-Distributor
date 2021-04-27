@@ -1,0 +1,9 @@
+{% extends 'base_page.html' %}
+
+{% set title = "Page Not Found" %}
+
+{% block content %}
+<br>
+<h1 class="text-center display-1">{{ code|default('404', false) }}</h1>
+<h1 class="text-center">{{ message|default('Page Not Found', false) }}</h1>
+{% endblock %}
